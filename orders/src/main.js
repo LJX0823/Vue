@@ -6,6 +6,12 @@ import router from './router'
 import ElementUI from 'element-ui'
 import Router from 'vue-router'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios'
+
+axios.defaults.baseURL='http://localhost:3000'
+Vue.prototype.$axios = axios    //全局注册，使用方法为:this.$axios
+Vue.config.productionTip = false
+
 const originalPush = Router.prototype.push
 Router.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)

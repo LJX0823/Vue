@@ -1,18 +1,19 @@
 <template>
   <div class="menu">
-    <el-row :style="{ padding: '0px',width:'90%' }">
-      <el-col class="card" v-for="o in 10" :key="o">
+    <el-row :style="{ padding: '0px',width:'80%' }">
+      <el-col class="card" v-for="(food,index) in Foods" :key="index">
         <el-card>
           <img
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+            :src="food.imgUrl"
             class="image"
           />
           <div style="padding: 14px;">
-            <span>好吃的汉堡</span>
+            <span>{{food.name}}</span>
             <div class="bottom clearfix">
-              <time class="blance">￥11</time>
+              <time class="blance">￥{{food.price}}</time>
+              <input type="hidden" :value="food.id" name="id">
               <el-button type="text" class="button">
-                <i class="el-icon-shopping-cart-2" @click="addOne"></i>
+                <i class="el-icon-shopping-cart-2" @click="addOne(food)"></i>
               </el-button>
             </div>
           </div>
@@ -29,10 +30,12 @@
 .image {
   width: 200px;
   display: block;
+  height: 110px;
 }
 .menu {
   position: absolute;
   left: 15%;
+  width: 80%;
 }
 .card {
   width: 200px;
@@ -67,16 +70,27 @@
 </style>
 <script>
 export default {
+  props:['chosenNums'],
   data () {
     return {
-      chosenNum: 0
+      chosenNum: this.chosenNums,
+      Foods:[],
+
     }
   },
+  created:function(){
+      this.$axios.get('/api/showFood').then(res=>{
+        debugger
+        this.Foods=res.data;
+      })  
+  },
   methods: {
-    addOne: function () {
+    addOne: function (e) {
       debugger
-      this.chosenNum = this.chosenNum + 1
-      this.$emit('chosenNums', this.chosenNum)
+      console.log(e);
+      this.chosenNum = this.chosenNum + 1;
+      this.$emit('chosenNums', this.chosenNum);
+      this.$emit('chosenOne',e);
     }
   }
 }

@@ -23,7 +23,7 @@ export default {
       // this.$router.replace({name:'menuLink'})
       // 通过push进行跳转
       // this.$router.push('/menu')
-      this.$router.push({ name: 'Home' })
+      this.$router.push({ path: '/Home' })
     }
   }
 }

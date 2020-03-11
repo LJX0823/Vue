@@ -20,11 +20,11 @@ left: 5%;
             <i class="el-icon-fork-spoon"></i>
             <span slot="title">食品</span>
           </el-menu-item>
-          <el-menu-item index="2">
+          <el-menu-item index="2" @click="showDrinkMenu" >
             <i class="el-icon-cold-drink"></i>
             <span slot="title">饮料</span>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="3"  @click="showUserMenu">
             <i class="el-icon-menu"></i>
             <span slot="title">管理</span>
           </el-menu-item>
@@ -37,9 +37,14 @@ left: 5%;
 export default {
   methods: {
     showFoodMenu: function () {
-      debugger
       this.$router.push({path: '/Home/foodMenu'})
+    },
+    showUserMenu: function () {
+      this.$router.push({path: '/Home/Login'})
+    },
+    showDrinkMenu: function () {
+      this.$router.push({path: '/Home/drinkMenu'})
+    },
     }
-  }
 }
 </script>
