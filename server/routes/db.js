@@ -35,7 +35,7 @@ var foodSchema=mongoose.Schema({
 //   {name:'披萨',isDrink:'0',id:'03',price:'23',imgUrl:"../../static/img/pizza.jpg"}
 // ]
 
-// var user=[{username:'admin',password:'admin',orginpsw:'admin'}]
+var user=[{username:'admin',password:'admin',orginpsw:'admin'}]
 
 //2.Model 通过Schema构造而成，除了具有Schema定义的数据库骨架以外，还可以具体的操作数据库。
 //这里表示在zhao数据库中创建了一个users的表，并且格式为loginSchema中所定义的
@@ -44,11 +44,11 @@ var Models = {
     Order : mongoose.model('orders',orderSchema),
     Food :mongoose.model('foods',foodSchema),
 }
-// Models.Login.insertMany(user,(err,result) => {
-// 	if(err){
-// 		console.log('数据添加失败');
-// 		throw err;
-// 	}
-// 	console.log('数据添加成功:',result);
-// })
+Models.Login.insertMany(user,(err,result) => {
+	if(err){
+		console.log('数据添加失败');
+		throw err;
+	}
+	console.log('数据添加成功:',result);
+})
 module.exports = Models;

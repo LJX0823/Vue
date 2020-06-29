@@ -24,6 +24,7 @@ export default {
       // 通过push进行跳转
       // this.$router.push('/menu')
       this.$router.push({ path: '/Home' })
+      location.reload();
     }
   }
 }
